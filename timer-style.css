@@ -1,0 +1,12 @@
+.navbar {
+  margin: 50px 50px 0px;
+}
+
+.content {
+  max-width: 800px;
+  margin: auto;
+}
+
+.row {
+  margin: 10px 0px;
+}

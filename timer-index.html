@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Countdown timer</title>
+  <link rel="stylesheet" href="timer-style.css">
+</head>
+
+<body>
+  <div class="navbar"></div>
+  <div class="content">
+    <div class="row">
+      <label for="hours">Hours</label>
+      <select id="hours" name="hour"></select>
+      <label for="minutes">Minutes</label>
+      <select id="minutes" name="minute"></select>
+      <label for="seconds">Seconds</label>
+      <select id="seconds" name="second"></select>
+    </div>
+    <div class="row">
+      <button id='countdown-button'>Start</button>
+      <button id='reset-button'>Reset</button>
+    </div>
+    <div class="row">
+      <h1 id='clock'>00:00:00</h1>
+    </div>
+  </div>
+
+  <script src="timer-main.js"></script>
+</body>
+
+</html>
