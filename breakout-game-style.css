@@ -1,0 +1,17 @@
+.content {
+  width: 480px;
+  margin: auto;
+}
+
+canvas { 
+  background: #eee; 
+}
+
+.row {
+  margin: 10px auto;
+}
+
+.center {
+  display: flex;
+  margin:auto;
+}

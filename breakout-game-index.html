@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>2d Breakout Game</title>
+  <link rel="stylesheet" href="breakout-game-style.css">
+</head>
+
+<body>
+  <div class="content">
+
+    <div class="row">
+      <label for="lives">Lives</label>
+      <select id="lives" name="lives"></select>
+      <label for="paddleSize">Paddle Size</label>
+      <select id="paddleSize" name="paddleSize"></select>
+      <label for="ballVel">Ball speed</label>
+      <select id="ballVel" name="ballVel"></select>
+      <label for="color">Color Theme</label>
+      <select id="color" name="color"></select>
+    </div>
+    <div class="row">
+      <button id="start-button" class="center">Start</button>
+    </div>
+    <div class="row">
+      <canvas id="myCanvas" width="480" height="320"></canvas>
+    </div>
+  </div>
+
+  <script src="breakout-game-main.js"></script>
+</body>
+
+</html>
