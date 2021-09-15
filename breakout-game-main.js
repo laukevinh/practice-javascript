@@ -413,7 +413,13 @@ function handleStart(e) {
   game.loop();
 }
 
+function showPreview(game) {
+  game.initialize();
+  game.next(game);
+}
+
 let game = new Game("myCanvas", 3);
 let startButton = document.querySelector("#start-button");
 createOptions(game.settings);
 startButton.addEventListener("click", handleStart);
+showPreview(game);
