@@ -73,7 +73,7 @@ Ball.prototype.collisionDetect = function (game) {
           && b.y <= this.y && this.y <= b.y + b.height) {
           b.exists = false;
           this.velY = -this.velY
-          game.settings.score++;
+          game.score++;
         }
       }
     }
@@ -169,14 +169,14 @@ Brick.prototype.draw = function () {
   this.ctx.closePath();
 }
 
-function Game(canvasElementID, lives) {
+function Game(canvasElementID) {
   this.canvas = document.getElementById(canvasElementID);
   this.ctx = this.canvas.getContext('2d');
 
   this.settings = {
     canvasElementID: canvasElementID,
     score: 0,
-    lives: lives,
+    lives: 3,
     brickColor: 'blue',
     brickWidth: 75,
     brickHeight: 20,
@@ -199,6 +199,8 @@ function Game(canvasElementID, lives) {
     ballSize: 10,
   }
 
+  this.lives = null;
+  this.score = null;
   this.paddle = null;
   this.ball = null;
   this.bricks = null;
@@ -206,6 +208,9 @@ function Game(canvasElementID, lives) {
 }
 
 Game.prototype.initialize = function () {
+  this.lives = this.settings.lives;
+  this.score = this.settings.score;
+
   this.paddle = new Paddle(
     this.settings.paddleStartX,
     this.settings.paddleStartY,
@@ -301,11 +306,11 @@ Game.prototype.detectGameOver = function () {
   let intervalId = this.intervalID;
 
   if (canvas.height <= ball.y + ball.size) {
-    if (this.settings.lives === 0) {
+    if (this.lives === 0) {
       alert('Game Over');
       clearInterval(intervalId);
     } else {
-      this.settings.lives--;
+      this.lives--;
       ball.x = this.settings.ballStartX;
       ball.y = this.settings.ballStartY;
       ball.velX = this.settings.ballVelX;
@@ -313,7 +318,7 @@ Game.prototype.detectGameOver = function () {
       paddle.x = (canvas.width - game.paddle.width) / 2;
     }
   }
-  if (this.settings.score === brickColumnCount * brickRowCount) {
+  if (this.score === brickColumnCount * brickRowCount) {
     alert('You win!');
     clearInterval(intervalId);
   }
@@ -322,13 +327,13 @@ Game.prototype.detectGameOver = function () {
 Game.prototype.drawScore = function () {
   this.ctx.font = "16px Arial";
   this.ctx.fillStyle = "#0095DD";
-  this.ctx.fillText("Score: " + this.settings.score, 8, 20);
+  this.ctx.fillText("Score: " + this.score, 8, 20);
 }
 
 Game.prototype.drawLives = function () {
   this.ctx.font = "16px Arial";
   this.ctx.fillStyle = "#0095DD";
-  this.ctx.fillText("Lives: " + this.settings.lives, this.canvas.width - 65, 20);
+  this.ctx.fillText("Lives: " + this.lives, this.canvas.width - 65, 20);
 }
 
 Game.prototype.next = function (_this) {
@@ -418,7 +423,7 @@ function showPreview(game) {
   game.next(game);
 }
 
-let game = new Game("myCanvas", 3);
+let game = new Game("myCanvas");
 let startButton = document.querySelector("#start-button");
 createOptions(game.settings);
 startButton.addEventListener("click", handleStart);
